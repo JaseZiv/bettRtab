@@ -1,0 +1,26 @@
+name: Scrape NFL Futures
+
+# At 23:01UTC daily (09:01 Melbourne time).
+on:
+  schedule:
+    - cron: "1 23 * * *"
+
+jobs:
+  update-nfl-futures:
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@master
+      - name: Package Installation
+        run: Rscript -e 'install.packages(c("dplyr", "httr", "tidyr", "jsonlite"))'
+      - name: Update futures
+        run: Rscript -e 'source(file.path("R", "nfl_futures.R"), echo = TRUE)'
+      - name: Commit
+        run: |
+          git config --global user.name 'JaseZiv'
+          git config --global user.email 'jaseziv83@gmail.com'
+          git add .
+          git commit -m 'updating fotmob matches by date' || echo "No changes to commit"
+          git push || echo "No changes to commit"
