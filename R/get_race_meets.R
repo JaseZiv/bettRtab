@@ -1,19 +1,16 @@
-library(httr)
-library(rvest)
-library(lubridate)
-library(tidyverse)
 
-
-# .replace_empty_na <- function(val) {
-#   if(length(val) == 0) {
-#     val <- NA_character_
-#   } else {
-#     val <- val
-#   }
-#   return(val)
-# }
-
-
+#' Get race meet meta data for specific race meet
+#'
+#' Internal function to return mrace meet meta data for a single date
+#'
+#' @param each_date date in YYYY-MM-DD format
+#'
+#' @return returns a dataframe of race meet data for single date
+#'
+#' @importFrom magrittr %>%
+#'
+#' @noRd
+#'
 .each_race_date <- function(each_date) {
 
   each_url <- paste0('https://api.beta.tab.com.au/v1/historical-results-service/VIC/racing/', each_date)
@@ -24,9 +21,7 @@ library(tidyverse)
                          pause_min = 5,
                          pause_base = 2)
 
-  # print(httr::http_status(history)$message)
-
-  history <- history %>% content()
+  history <- history %>% httr::content()
 
   # need a while loop here as there were still times when the API was failing and returning a list of length zero
   # have arbitrarily set the max number of retries in the while-loop to 20 - might want to parameterise this later
@@ -48,7 +43,6 @@ library(tidyverse)
 
   }
 
-  # history <- httr::GET(url = paste0('https://api.beta.tab.com.au/v1/historical-results-service/VIC/racing/', each_date)) %>% content()
   meetings_list <- history$meetings
 
 
@@ -72,29 +66,29 @@ library(tidyverse)
 
 
 
-
+#' Get race meet metadata
+#'
+#' Returns race meet details for selected date(s)
+#'
+#' @param race_dates vector of dates in YYYY-MM-DD format
+#'
+#' @return returns a dataframe of all race meet metadata
+#'
+#' @importFrom magrittr %>%
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' try({
+#' dates <- seq(from = as.Date("2022-08-01"), to=as.Date("2022-08-03"), by=1)
+#' df <- get_race_meet_meta(race_dates=dates)
+#' })
+#' }
 get_race_meet_meta <- function(race_dates) {
 
   race_dates %>%
     purrr::map_df(.each_race_date)
 }
-
-
-
-
-dates <- seq(from = ymd("2021-01-01"), to=ymd("2022-09-03"), by=1) %>% as.character()
-
-race_meets <- data.frame()
-
-
-for(i in dates) {
-  print(paste("scraping date:", i))
-  # Sys.sleep(2)
-  df <- get_race_meet_meta(i)
-  race_meets <- bind_rows(race_meets, df)
-}
-
-
-saveRDS(race_meets, "data/race_meets_21_22.rds")
 
 

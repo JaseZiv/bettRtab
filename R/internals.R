@@ -29,6 +29,26 @@
 #' @noRd
 #'
 .unlist_df_cols <- function(data) {
+  df_name <- names(data)
+
   ListCols <- sapply(data, is.list)
-  cbind(data[!ListCols], t(apply(data[ListCols], 1, unlist)))
+  data <- cbind(data[!ListCols], t(apply(data[ListCols], 1, as.character)))
+  colnames(data) <- df_name
+  return(data)
+}
+
+
+
+#' Read in stored RDS data
+#'
+#' Reads in RDS stored data files typically stored on GitHub
+#'
+#' @param file_url URL to RDS file(s) for reading in
+#'
+#' @return data type dependent on RDS file being read in
+#' @noRd
+#'
+.file_reader <- function(file_url) {
+  tryCatch(readRDS(url(file_url)), error = function(e) data.frame()) %>%
+    suppressWarnings()
 }

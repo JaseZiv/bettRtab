@@ -1,0 +1,37 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+options(tibble.print_min = 5, tibble.print_max = 5)
+```
+
+# bettRtab
+
+<!-- badges: start -->
+[![Version-Number](https://img.shields.io/github/r-package/v/JaseZiv/bettRtab?label=bettRtab (Dev))](https://github.com/JaseZiv/bettRtab/)
+[![R build status](https://github.com/JaseZiv/bettRtab/workflows/R-CMD-check/badge.svg)](https://github.com/JaseZiv/bettRtab/actions)
+<!-- badges: end -->
+
+## Overview
+
+This package is designed to allow users to obtain clean and tidy TAB betting markets for both racing and sports. It gives users the ability to access data more efficiently.
+
+
+## Installation
+
+
+You can install the released version of [**```bettRtab```**](https://github.com/JaseZiv/bettRtab/) from [GitHub](https://github.com/JaseZiv/bettRtab) with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("JaseZiv/bettRtab")
+```

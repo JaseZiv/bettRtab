@@ -1,0 +1,33 @@
+Type: Package
+Package: bettRtab
+Title: Extract and Clean TAB Betting Markets
+Version: 0.0.0.1000
+Authors@R: c(
+    person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph"))
+  )
+Description: Allow users to obtain clean and tidy
+    TAB betting markets for both racing and sports.
+    It gives users the ability to access data more efficiently.
+License: GPL-3
+URL: https://github.com/JaseZiv/bettRtab
+BugReports: https://github.com/JaseZiv/bettRtab/issues
+Depends: 
+  R (>= 4.0.0)
+Imports:
+    dplyr,
+    httr,
+    jsonlite,
+    lubridate,
+    magrittr,
+    purrr,
+    rlang,
+    tidyr (>= 1.2.0),
+    utils,
+    xml2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Encoding: UTF-8
+RoxygenNote: 7.2.1
+Config/testthat/edition: 3
