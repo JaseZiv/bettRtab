@@ -4,14 +4,14 @@ library(lubridate)
 library(tidyverse)
 
 
-.replace_empty_na <- function(val) {
-  if(length(val) == 0) {
-    val <- NA_character_
-  } else {
-    val <- val
-  }
-  return(val)
-}
+# .replace_empty_na <- function(val) {
+#   if(length(val) == 0) {
+#     val <- NA_character_
+#   } else {
+#     val <- val
+#   }
+#   return(val)
+# }
 
 
 .each_race_date <- function(each_date) {
@@ -29,9 +29,12 @@ library(tidyverse)
   history <- history %>% content()
 
   # need a while loop here as there were still times when the API was failing and returning a list of length zero
-  # the while-loop fixes this, ALTHOUGH there is some risk in this - it could be an infinite loop so might need to control for this
-  # by putting in a condition based on how many attempts it tries
+  # have arbitrarily set the max number of retries in the while-loop to 20 - might want to parameterise this later
+  iter <- 1
   while(length(history) == 0) {
+
+    iter <- iter + 1
+    stopifnot("The API is not accepting this request. Please try again." = iter <21)
 
     Sys.sleep(2)
 

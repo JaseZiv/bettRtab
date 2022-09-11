@@ -17,9 +17,6 @@ all_data <- data.frame()
 for(i in b) {
   each_sport <- toJSON(i) %>% fromJSON() %>% data.frame()
 
-  # z <- i$competitions
-  # comps_in_sport <- z %>% toJSON() %>% fromJSON() %>% data.frame()
-
   all_data <- bind_rows(all_data, each_sport)
 }
 
