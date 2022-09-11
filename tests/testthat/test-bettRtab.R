@@ -1,5 +1,3 @@
-context("Testing betRtab functions")
-
 
 test_that("get_sports_market() works", {
   df <- get_sports_market("Major League Baseball Futures")
