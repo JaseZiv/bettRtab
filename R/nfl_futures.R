@@ -1,3 +1,5 @@
+library(dplyr)
+
 # NFL Futures -------------------------------------------------------------
 
 # res <- GET("https://api.beta.tab.com.au/v1/tab-info-service/sports/American%20Football/competitions/NFL%20Futures?jurisdiction=VIC") %>% content()
