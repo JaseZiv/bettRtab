@@ -44,6 +44,7 @@ get_sports_market <- function(competition_name) {
     }
 
     df <- tidyr::unnest(markets, cols = .data$propositions) %>% data.frame()
+    df <- df %>% dplyr::select(-.data$differential, -.data$message, -.data$informationMessage)
     df <- .unlist_df_cols(df)
 
     markets_df <- dplyr::bind_rows(markets_df, df)
