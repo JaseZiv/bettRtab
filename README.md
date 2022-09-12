@@ -12,9 +12,9 @@ status](https://github.com/JaseZiv/bettRtab/workflows/R-CMD-check/badge.svg)](ht
 
 ## Overview
 
-This package is designed to allow users to obtain clean and tidy TAB
-betting markets for both racing and sports. It gives users the ability
-to access data more efficiently.
+This package is designed to allow users to obtain clean and tidy
+[TAB](https://www.tab.com.au/) betting markets for both racing and
+sports. It gives users the ability to access data more efficiently.
 
 ## Installation
 
@@ -42,3 +42,8 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
                                  username =Sys.getenv("PROXY_USERNAME"),
                                  password= Sys.getenv("PROXY_PASSWORD")))
 ```
+
+## Acknowledgement
+
+Image used in the logo comes from
+[shutterstock](https://www.shutterstock.com/search/betting-paper)
