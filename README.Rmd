@@ -35,3 +35,18 @@ You can install the released version of [**```bettRtab```**](https://github.com/
 # install.packages("remotes")
 remotes::install_github("JaseZiv/bettRtab")
 ```
+
+
+## Usage
+
+The functions in this package should work without hitch locally, but running these in an automated way (GitHub Actions, cloud, etc) may lead to requests being blocked.
+
+To get around this, you will need access to proxies and would need to set configs at the start of your scripts similar to the following:
+
+```{r}
+httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
+                                 port = as.numeric(Sys.getenv("PROXY_PORT")),
+                                 username =Sys.getenv("PROXY_USERNAME"),
+                                 password= Sys.getenv("PROXY_PASSWORD")))
+
+
