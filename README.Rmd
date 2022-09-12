@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-# bettRtab
+# bettRtab <img src="man/figures/logo.png" align="right" width="181" height="201"/>
 
 <!-- badges: start -->
 [![Version-Number](https://img.shields.io/github/r-package/v/JaseZiv/bettRtab?label=bettRtab (Dev))](https://github.com/JaseZiv/bettRtab/)
@@ -23,7 +23,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 ## Overview
 
-This package is designed to allow users to obtain clean and tidy TAB betting markets for both racing and sports. It gives users the ability to access data more efficiently.
+This package is designed to allow users to obtain clean and tidy [TAB](https://www.tab.com.au/) betting markets for both racing and sports. It gives users the ability to access data more efficiently.
 
 
 ## Installation
@@ -49,4 +49,12 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
                                  username =Sys.getenv("PROXY_USERNAME"),
                                  password= Sys.getenv("PROXY_PASSWORD")))
 
+
+```
+
+
+
+## Acknowledgement
+
+Image used in the logo comes from [shutterstock](https://www.shutterstock.com/search/betting-paper)
 

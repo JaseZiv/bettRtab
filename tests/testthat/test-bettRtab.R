@@ -1,4 +1,10 @@
 
+httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
+                                 port = as.numeric(Sys.getenv("PROXY_PORT")),
+                                 username =Sys.getenv("PROXY_USERNAME"),
+                                 password= Sys.getenv("PROXY_PASSWORD")))
+
+
 test_that("get_sports_market() works", {
   df <- get_sports_market("Major League Baseball Futures")
   expect_type(df, "list")
