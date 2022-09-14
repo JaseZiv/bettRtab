@@ -1,7 +1,7 @@
 Type: Package
 Package: bettRtab
 Title: Extract and Clean TAB Betting Markets
-Version: 0.0.0.1000
+Version: 0.0.0.2000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph"))
   )
@@ -17,13 +17,10 @@ Imports:
     dplyr,
     httr,
     jsonlite,
-    lubridate,
     magrittr,
     purrr,
     rlang,
-    tidyr (>= 1.2.0),
-    utils,
-    xml2
+    tidyr (>= 1.2.0)
 Suggests: 
     knitr,
     rmarkdown,

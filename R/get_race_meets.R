@@ -21,12 +21,14 @@
                          pause_min = 5,
                          pause_base = 2)
 
-  history <- history %>% httr::content()
+  history_content <- suppressMessages(tryCatch(httr::content(history, "text"), error = function(e) NA_character_))
+
+  meetings_list <- tryCatch(data.frame(jsonlite::fromJSON(history_content)$meetings), error = function(e) NA_character_)
 
   # need a while loop here as there were still times when the API was failing and returning a list of length zero
   # have arbitrarily set the max number of retries in the while-loop to 20 - might want to parameterise this later
   iter <- 1
-  while(length(history) == 0) {
+  while(length(history_content) == 0 | is.na(history_content) | any(grepl("NOT_FOUND_ERROR", history_content))) {
 
     iter <- iter + 1
     stopifnot("The API is not accepting this request. Please try again." = iter <21)
@@ -39,29 +41,14 @@
                            pause_min = 5,
                            pause_base = 2)
 
-    history <- history %>% httr::content()
+
+    history_content <- suppressMessages(tryCatch(httr::content(history, "text"), error = function(e) NA_character_))
+
+    meetings_list <- tryCatch(data.frame(jsonlite::fromJSON(history_content)$meetings), error = function(e) NA_character_)
 
   }
 
-  meetings_list <- history$meetings
-
-
-  .each_race_meet <- function(x) {
-    meta <- data.frame(meetingName = tryCatch(as.character(x[["meetingName"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       location = tryCatch(as.character(x[["location"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       venueMnemonic = tryCatch(as.character(x[["venueMnemonic"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       raceType = tryCatch(as.character(x[["raceType"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       meetingDate = tryCatch(as.character(x[["meetingDate"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       weatherCondition = tryCatch(as.character(x[["weatherCondition"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       trackCondition = tryCatch(as.character(x[["trackCondition"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       meetUrl = tryCatch(as.character(x[["_links"]][["self"]]) %>% .replace_empty_na(), error = function(e) NA_character_),
-                       numRaces = tryCatch(x$races %>% length() %>% .replace_empty_na(), error = function(e) NA_character_)
-)
-  }
-
-  dat <- meetings_list %>%
-    purrr::map_df(.each_race_meet)
-
+  return(meetings_list)
 }
 
 
