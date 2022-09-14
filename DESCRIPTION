@@ -1,6 +1,6 @@
 Type: Package
 Package: bettRtab
-Title: Extract and Clean TAB Betting Markets
+Title: API wrapper to interact with the betting company TAB
 Version: 0.0.0.2000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph"))

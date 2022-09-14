@@ -1,0 +1,17 @@
+destination: docs
+title: bettRtab
+
+template:
+  bootstrap: 5
+  bootswatch: simplex
+
+navbar:
+  type: dark
+  bg: dark
+  structure:
+    left: [home, reference, articles, news]
+    right: [twitter, github, more]
+  components:
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: https://twitter.com/jaseziv

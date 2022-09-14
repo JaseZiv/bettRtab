@@ -1,4 +1,4 @@
-# bettRtab (Development Version)
+# bettRtab  (development version)
 
 ### New Functions
 

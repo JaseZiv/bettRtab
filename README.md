@@ -16,6 +16,15 @@ This package is designed to allow users to obtain clean and tidy
 [TAB](https://www.tab.com.au/) betting markets for both racing and
 sports. It gives users the ability to access data more efficiently.
 
+### Future Plans
+
+I hope to expand this to allow for interacting with the betting API -
+potentially giving users the ability to place bets through the API. To
+do this, I’m still waiting on the TAB Digital Team to respond to a
+request for an access token to be able to test out some functions.
+
+------------------------------------------------------------------------
+
 ## Installation
 
 You can install the released version of
@@ -42,6 +51,31 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
                                  username =Sys.getenv("PROXY_USERNAME"),
                                  password= Sys.getenv("PROXY_PASSWORD")))
 ```
+
+------------------------------------------------------------------------
+
+## Contributing
+
+### Issues and Improvements
+
+When creating an issue, please include:
+
+-   Reproducible examples
+-   A brief description of what the expected results are
+-   For improvement suggestions, what features are being requested and
+    their purpose
+
+Feel free to get in touch via email or twitter
+<https://twitter.com/jaseziv> if you aren’t able to create an issue.
+
+### Show your support
+
+Follow me on Twitter ([jaseziv](https://twitter.com/jaseziv)) for
+updates
+
+If this package helps you, all I ask is that you star this repo
+
+------------------------------------------------------------------------
 
 ## Acknowledgement
 
