@@ -19,6 +19,10 @@ jobs:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      PROXY_URL: ${{ secrets.PROXY_URL }}
+      PROXY_PORT: ${{ secrets.PROXY_PORT }}
+      PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
+      PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
 
