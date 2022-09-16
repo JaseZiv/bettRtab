@@ -5,7 +5,7 @@
 #'
 #' @param competition_name the name of the TAB competition. Found under the competitions page selector
 #'
-#' @return returns a dataframe of bets available for the selcted competition
+#' @return returns a dataframe of bets available for the selected competition
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data

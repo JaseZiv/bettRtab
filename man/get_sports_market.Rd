@@ -10,7 +10,7 @@ get_sports_market(competition_name)
 \item{competition_name}{the name of the TAB competition. Found under the competitions page selector}
 }
 \value{
-returns a dataframe of bets available for the selcted competition
+returns a dataframe of bets available for the selected competition
 }
 \description{
 Returns all betting markets data for a selected TAB competition

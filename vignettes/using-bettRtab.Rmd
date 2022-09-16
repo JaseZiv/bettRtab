@@ -1,0 +1,94 @@
+---
+title: "Getting TAB betting data using bettRtab"
+author: "Jason Zivkovic"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting TAB betting data using bettRtab}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message=FALSE,
+  warning=FALSE
+)
+```
+
+
+## Overview
+
+This vignette will outline the ways in which the functions in `bettRtab` can be used to extract sports and racing betting data from the [TAB](https://www.tab.com.au/).
+
+***
+
+## Installation
+
+
+You can install the released version of [**```bettRtab```**](https://github.com/JaseZiv/bettRtab/) from [GitHub](https://github.com/JaseZiv/bettRtab) with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("JaseZiv/bettRtab")
+```
+
+
+```{r libraries}
+library(bettRtab)
+library(dplyr)
+```
+
+
+
+## Usage
+
+The functions in this package should work without hitch locally, but running these in an automated way (GitHub Actions, cloud, etc) may lead to requests being blocked.
+
+To get around this, you will need access to proxies and would need to set configs at the start of your scripts similar to the following:
+
+```{r}
+httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
+                                 port = as.numeric(Sys.getenv("PROXY_PORT")),
+                                 username =Sys.getenv("PROXY_USERNAME"),
+                                 password= Sys.getenv("PROXY_PASSWORD")))
+
+
+```
+
+
+### Sports Data
+
+To get betting data for any competition listed here, used the `get_sports_market()` function:
+
+```{r sports_markets}
+epl_futures <- get_sports_market(competition_name = "English Premier League Futures")
+
+glimpse(epl_futures)
+
+```
+
+With this data, we can then explore some key markets... say we want to see the odds of relegation in the EPL:
+
+```{r}
+epl_futures %>% 
+  filter(betOption == "Relegation") %>% 
+  select(marketName, id, name, returnWin)
+```
+
+
+
+
+
+
+### Racing Data
+
+
+
+
+
+
+
+***
