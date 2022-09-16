@@ -42,6 +42,7 @@ library(dplyr)
 ```
 
 
+***
 
 ## Usage
 
@@ -49,7 +50,7 @@ The functions in this package should work without hitch locally, but running the
 
 To get around this, you will need access to proxies and would need to set configs at the start of your scripts similar to the following:
 
-```{r}
+```{r configs}
 httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
                                  port = as.numeric(Sys.getenv("PROXY_PORT")),
                                  username =Sys.getenv("PROXY_USERNAME"),
@@ -61,7 +62,11 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
 
 ### Sports Data
 
-To get betting data for any competition listed here, used the `get_sports_market()` function:
+To get betting data for any currently available competition market, use the `get_sports_market()` function. 
+
+To get a valid list of values you can pass to the `competition_name` parameter, look at the `competitions.name` column in the file [here](https://github.com/JaseZiv/Betting-Data/blob/main/data/sports_markets.csv).
+
+Alternatively, the `competition_name` needed as an argument to this function can be found under the competitions page selector on the TAB website.
 
 ```{r sports_markets}
 epl_futures <- get_sports_market(competition_name = "English Premier League Futures")
@@ -70,25 +75,133 @@ glimpse(epl_futures)
 
 ```
 
-With this data, we can then explore some key markets... say we want to see the odds of relegation in the EPL:
+We can then inspect to see which betting markets are available:
 
-```{r}
+```{r betting_markets}
+epl_futures %>% 
+  select(betOption) %>% distinct()
+```
+
+
+and we can then explore some key markets... say we want to see the odds of relegation in the EPL:
+
+```{r relegation}
 epl_futures %>% 
   filter(betOption == "Relegation") %>% 
   select(marketName, id, name, returnWin)
 ```
 
 
-
-
-
-
-### Racing Data
-
-
-
-
-
-
-
 ***
+
+### Past Racing Data
+
+The following section will outline how to use functions do get racing data (horses, harness racing and greyhounds) for past races run. 
+
+> This section does not include functions to get current day or future racing data.
+
+
+#### Race Meet Meta Data
+
+To get meta data for race meets for a selected date(s), use the `get_race_meet_meta()` function.
+
+The output of this function will return where and when the meet(s) were, the weather and track condition, and high level data about each of the races at the meets.
+
+```{r race_meet_meta}
+dates <- seq(from = as.Date("2022-05-01"), to=as.Date("2022-05-03"), by=1)
+race_meets <- get_race_meet_meta(race_dates=dates)
+
+glimpse(race_meets)
+```
+
+
+**Loading Data**
+
+Rather than scraping this information, you can instead use the `load_race_meet_meta()` function. This will allow you to get a whole year's worth of race meet meta data extremely quickly. This data updates daily, so should only very rarely not have the previous day's race meet data:
+
+```{r load_meets}
+loaded_race_meets <- load_race_meet_meta(cal_year=2022)
+glimpse(loaded_race_meets)
+```
+
+
+### Each Race Data
+
+To get detailed data on runners, markets, pools and dividends, the following set of functions will be used.
+
+**Past Race data output**
+
+The `get_past_races()` function will allow you to pass in values for four parameters to have a list of races outputted. The result of this function should be stored for use with the parsing functions to be explained shortly.
+
+The `race_num` value can be left off the function call to default to returning all races on a card's meet. 
+
+The `race_type` value needs to be either 'R', 'H' or 'G'.
+
+The rest of the parameters can have multiple arguments passed to them.
+
+```{r get_past_races}
+race_list_output <- get_past_races(meet_date = c('2022-09-03', '2022-09-10'), venue_mnem = 'M', race_type = 'R', race_num = c(8:9))
+```
+
+
+Alternatively, you can get the same data as above using the TAB race API URL. To get this URL, follow the below steps:
+
+```{r get_past_races_url, eval=FALSE}
+# first load in meet data
+meets <- load_race_meet_meta(cal_year = 2022)
+
+# then filter to the race(s) meets wanted
+meet_dates_df <- meets %>%
+   filter(venueMnemonic == "M",
+          raceType == "R",
+          meetingDate == "2022-01-01")
+
+# then get the URLs
+meet_url <- meet_dates_df$races[[1]]
+meet_url <- meet_url$`_links`$self[1]
+
+# finally, running the function:
+race_list_output <- get_past_race_content(urls = meet_url)
+```
+
+
+### Parsing Race Data
+
+So to easily get the data you want, parsing functions have been created to operate on the stored outputs of either the `get_past_races()` or `get_past_race_content()`.
+
+
+**Parse runners and betting market**
+
+To get a race's runners and betting odds, use the `parse_runners()` function:
+
+```{r runners}
+runners <- parse_runners(race_list = race_list_output)
+glimpse(runners)
+```
+
+
+
+**Parse pools**
+
+To get a race's betting pools, use the `parse_pools()` function:
+
+```{r pools}
+pools <- parse_pools(race_list = race_list_output)
+glimpse(pools)
+```
+
+
+
+**Parse dividends**
+
+To get a race's dividends, use the `parse_dividends()` function:
+
+```{r dividends}
+dividends <- parse_dividends(race_list = race_list_output)
+glimpse(dividends)
+```
+
+
+
+
+

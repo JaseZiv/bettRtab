@@ -4,6 +4,12 @@
     <loc>https://jaseziv.github.io/bettRtab/404.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/bettRtab/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/bettRtab/articles/using-bettRtab.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/bettRtab/authors.html</loc>
   </url>
   <url>
@@ -13,6 +19,12 @@
     <loc>https://jaseziv.github.io/bettRtab/news/index.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/bettRtab/reference/get_past_race_content.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/bettRtab/reference/get_past_races.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/bettRtab/reference/get_race_meet_meta.html</loc>
   </url>
   <url>
@@ -20,5 +32,17 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/bettRtab/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/bettRtab/reference/load_race_meet_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/bettRtab/reference/parse_dividends.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/bettRtab/reference/parse_pools.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/bettRtab/reference/parse_runners.html</loc>
   </url>
 </urlset>

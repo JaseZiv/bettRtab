@@ -34,6 +34,7 @@ You can install the released version of
 ``` r
 # install.packages("remotes")
 remotes::install_github("JaseZiv/bettRtab")
+library(bettRtab)
 ```
 
 ## Usage
@@ -51,6 +52,12 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
                                  username =Sys.getenv("PROXY_USERNAME"),
                                  password= Sys.getenv("PROXY_PASSWORD")))
 ```
+
+### How To
+
+To get a better understanding of how to use the library, see the package
+vignette
+[here](https://jaseziv.github.io/bettRtab/articles/using-bettRtab.html)
 
 ------------------------------------------------------------------------
 
