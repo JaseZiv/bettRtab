@@ -51,8 +51,8 @@
 
   meta <- .parse_race_meta(race_list_element)
 
-  runners <- race_list_element$runners %>% data.frame()
-  runners <- tidyr::unnest(runners, cols = c(.data$fixedOdds, .data$parimutuel), names_sep = ".")
+  runners <- tryCatch(race_list_element$runners %>% data.frame(), error = function(e) data.frame())
+  runners <- tryCatch(tidyr::unnest(runners, cols = c(.data$fixedOdds, .data$parimutuel), names_sep = "."), error = function(e) data.frame())
 
   df <- dplyr::bind_cols(meta, runners)
 
