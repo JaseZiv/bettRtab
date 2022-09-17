@@ -19,7 +19,7 @@
 #' })
 #' }
 load_race_meet_meta <- function(cal_year) {
-  dat_urls <- paste0("https://github.com/JaseZiv/Betting-Data/blob/main/data/race-meets/", cal_year, "/race_meets_meta_2022.rds?raw=true")
+  dat_urls <- paste0("https://github.com/JaseZiv/Betting-Data/blob/main/data/race-meets/", cal_year, "/race_meets_meta_", cal_year, ".rds?raw=true")
 
   dat_df <- .file_reader(dat_urls)
 
