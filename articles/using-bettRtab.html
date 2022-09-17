@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">bettRtab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.3000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.4000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Getting TAB betting data using bettRtab</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-09-16</h4>
+            <h4 data-toc-skip class="date">2022-09-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/bettRtab/blob/HEAD/vignettes/using-bettRtab.Rmd" class="external-link"><code>vignettes/using-bettRtab.Rmd</code></a></small>
       <div class="d-none name"><code>using-bettRtab.Rmd</code></div>
@@ -127,7 +127,7 @@
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sports_market.html">get_sports_market</a></span><span class="op">(</span>competition_name <span class="op">=</span> <span class="st">"English Premier League Futures"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_futures</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 263</span></span>
+<span><span class="co">#&gt; Rows: 20</span></span>
 <span><span class="co">#&gt; Columns: 33</span></span>
 <span><span class="co">#&gt; $ marketId            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "68519348", "68519348", "68519348", "68519348", "6…</span></span>
 <span><span class="co">#&gt; $ marketName          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "EPL Winner 2022/23", "EPL Winner 2022/23", "EPL W…</span></span>
@@ -136,7 +136,7 @@
 <span><span class="co">#&gt; $ betOptionSpectrumId <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "52", "52", "52", "52", "52", "52", "52", "52", "5…</span></span>
 <span><span class="co">#&gt; $ betOptionPriority   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "90", "90", "90", "90", "90", "90", "90", "90", "9…</span></span>
 <span><span class="co">#&gt; $ marketUniqueId      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "68519348", "68519348", "68519348", "68519348", "6…</span></span>
-<span><span class="co">#&gt; $ closeTime           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2022-09-16T19:00:00.000Z", "2022-09-16T19:00:00.0…</span></span>
+<span><span class="co">#&gt; $ closeTime           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2022-09-17T11:30:00.000Z", "2022-09-17T11:30:00.0…</span></span>
 <span><span class="co">#&gt; $ marketBettingStatus <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Open", "Open", "Open", "Open", "Open", "Open", "O…</span></span>
 <span><span class="co">#&gt; $ isFuture            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "T…</span></span>
 <span><span class="co">#&gt; $ onlineBetting       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "T…</span></span>
@@ -166,45 +166,15 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">betOption</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                              betOption</span></span>
-<span><span class="co">#&gt; 1                               Winner</span></span>
-<span><span class="co">#&gt; 2                      Top Goal Scorer</span></span>
-<span><span class="co">#&gt; 3                                Top 4</span></span>
-<span><span class="co">#&gt; 4                           Relegation</span></span>
-<span><span class="co">#&gt; 5                                Top 2</span></span>
-<span><span class="co">#&gt; 6                                Top 6</span></span>
-<span><span class="co">#&gt; 7                   To Finish Top Half</span></span>
-<span><span class="co">#&gt; 8                  Team to Finish Last</span></span>
-<span><span class="co">#&gt; 9               Season Points Handicap</span></span>
-<span><span class="co">#&gt; 10 Winner without Liverpool &amp; Man City</span></span>
-<span><span class="co">#&gt; 11                Winner without Big 6</span></span>
-<span><span class="co">#&gt; 12               Big 6 To Be Relegated</span></span></code></pre></div>
+<span><span class="co">#&gt;   betOption</span></span>
+<span><span class="co">#&gt; 1    Winner</span></span></code></pre></div>
 <p>and we can then explore some key markets… say we want to see the odds of relegation in the EPL:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">betOption</span> <span class="op">==</span> <span class="st">"Relegation"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">marketName</span>, <span class="va">id</span>, <span class="va">name</span>, <span class="va">returnWin</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                marketName     id              name returnWin</span></span>
-<span><span class="co">#&gt; 1  EPL Relegation 2022/23 228287       Bournemouth      1.42</span></span>
-<span><span class="co">#&gt; 2  EPL Relegation 2022/23 228288 Nottingham Forest       1.8</span></span>
-<span><span class="co">#&gt; 3  EPL Relegation 2022/23 228279         Leicester         3</span></span>
-<span><span class="co">#&gt; 4  EPL Relegation 2022/23 228278           Everton      3.25</span></span>
-<span><span class="co">#&gt; 5  EPL Relegation 2022/23 228284            Fulham      3.75</span></span>
-<span><span class="co">#&gt; 6  EPL Relegation 2022/23 228285       Southampton      3.75</span></span>
-<span><span class="co">#&gt; 7  EPL Relegation 2022/23 228286             Leeds       4.5</span></span>
-<span><span class="co">#&gt; 8  EPL Relegation 2022/23 228277     Wolverhampton         5</span></span>
-<span><span class="co">#&gt; 9  EPL Relegation 2022/23 228283       Aston Villa         6</span></span>
-<span><span class="co">#&gt; 10 EPL Relegation 2022/23 228282         Brentford       6.5</span></span>
-<span><span class="co">#&gt; 11 EPL Relegation 2022/23 228280    Crystal Palace        10</span></span>
-<span><span class="co">#&gt; 12 EPL Relegation 2022/23 228275          West Ham        15</span></span>
-<span><span class="co">#&gt; 13 EPL Relegation 2022/23 228276         Newcastle        41</span></span>
-<span><span class="co">#&gt; 14 EPL Relegation 2022/23 228281          Brighton        51</span></span>
-<span><span class="co">#&gt; 15 EPL Relegation 2022/23 228272           Man Utd       151</span></span>
-<span><span class="co">#&gt; 16 EPL Relegation 2022/23 228271           Chelsea       501</span></span>
-<span><span class="co">#&gt; 17 EPL Relegation 2022/23 228270         Liverpool      1001</span></span>
-<span><span class="co">#&gt; 18 EPL Relegation 2022/23 228274           Arsenal      1001</span></span>
-<span><span class="co">#&gt; 19 EPL Relegation 2022/23 228273         Tottenham      1501</span></span>
-<span><span class="co">#&gt; 20 EPL Relegation 2022/23 228269          Man City      3001</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] marketName id         name       returnWin </span></span>
+<span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level3">
@@ -242,7 +212,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loaded_race_meets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_race_meet_meta.html">load_race_meet_meta</a></span><span class="op">(</span>cal_year<span class="op">=</span><span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">loaded_race_meets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 11,819</span></span>
+<span><span class="co">#&gt; Rows: 11,870</span></span>
 <span><span class="co">#&gt; Columns: 11</span></span>
 <span><span class="co">#&gt; $ meetingName      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FLEMINGTON", "ECHUCA", "THE MEADOWS", "MORNINGTON", …</span></span>
 <span><span class="co">#&gt; $ location         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VIC", "VIC", "VIC", "VIC", "VIC", "VIC", "NSW", "NSW…</span></span>
