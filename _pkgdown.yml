@@ -1,7 +1,12 @@
 url: https://jaseziv.github.io/bettRtab/
+
+authors:
+  Jason Zivkovic:
+    href: https://twitter.com/jaseziv
+
 template:
   bootstrap: 5
   bootswatch: simplex
   params:
-    ganalytics: UA-145056765-6
+    ganalytics: G-MG3SKS2272
 
