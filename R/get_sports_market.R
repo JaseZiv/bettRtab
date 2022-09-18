@@ -19,7 +19,7 @@
 #' })
 #' }
 get_sports_market <- function(competition_name) {
-  sports <- .file_reader("https://github.com/JaseZiv/Betting-Data/blob/main/data/sports_markets.rds?raw=true")
+  sports <- .file_reader("https://github.com/JaseZiv/bettRtab_data/blob/main/data/sports_markets.rds?raw=true")
 
   link_url <- sports %>%
     dplyr::filter(.data$competitions.name == competition_name) %>%

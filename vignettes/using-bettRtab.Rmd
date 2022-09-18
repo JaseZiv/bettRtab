@@ -64,7 +64,7 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
 
 To get betting data for any currently available competition market, use the `get_sports_market()` function. 
 
-To get a valid list of values you can pass to the `competition_name` parameter, look at the `competitions.name` column in the file [here](https://github.com/JaseZiv/Betting-Data/blob/main/data/sports_markets.csv).
+To get a valid list of values you can pass to the `competition_name` parameter, look at the `competitions.name` column in the file [here](https://github.com/JaseZiv/bettRtab_data/blob/main/data/sports_markets.csv).
 
 Alternatively, the `competition_name` needed as an argument to this function can be found under the competitions page selector on the TAB website.
 

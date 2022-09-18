@@ -85,7 +85,7 @@ resp <- suppressMessages(tryCatch(httr::content(res, "text"), error = function(e
 
 
 resp <- jsonlite::fromJSON(resp)
-
+saveRDS(resp, "playground/live_market_with_tournament.rds")
 
 # resp <- jsonlite::fromJSON("https://api.beta.tab.com.au/v1/recommendation-service/live-events?jurisdiction=VIC")
 
