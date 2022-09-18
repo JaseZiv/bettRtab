@@ -2,4 +2,6 @@ url: https://jaseziv.github.io/bettRtab/
 template:
   bootstrap: 5
   bootswatch: simplex
+  params:
+    ganalytics: UA-145056765-6
 
