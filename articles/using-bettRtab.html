@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">bettRtab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.5000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.6000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +127,7 @@
 <h3 id="sports-data">Sports Data<a class="anchor" aria-label="anchor" href="#sports-data"></a>
 </h3>
 <p>To get betting data for any currently available competition market, use the <code><a href="../reference/get_sports_market.html">get_sports_market()</a></code> function.</p>
-<p>To get a valid list of values you can pass to the <code>competition_name</code> parameter, look at the <code>competitions.name</code> column in the file <a href="https://github.com/JaseZiv/Betting-Data/blob/main/data/sports_markets.csv" class="external-link">here</a>.</p>
+<p>To get a valid list of values you can pass to the <code>competition_name</code> parameter, look at the <code>competitions.name</code> column in the file <a href="https://github.com/JaseZiv/bettRtab_data/blob/main/data/sports_markets.csv" class="external-link">here</a>.</p>
 <p>Alternatively, the <code>competition_name</code> needed as an argument to this function can be found under the competitions page selector on the TAB website.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sports_market.html">get_sports_market</a></span><span class="op">(</span>competition_name <span class="op">=</span> <span class="st">"English Premier League Futures"</span><span class="op">)</span></span>
@@ -240,7 +240,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loaded_race_meets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_race_meet_meta.html">load_race_meet_meta</a></span><span class="op">(</span>cal_year<span class="op">=</span><span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">loaded_race_meets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 11,916</span></span>
+<span><span class="co">#&gt; Rows: 11,870</span></span>
 <span><span class="co">#&gt; Columns: 11</span></span>
 <span><span class="co">#&gt; $ meetingName      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FLEMINGTON", "ECHUCA", "THE MEADOWS", "MORNINGTON", …</span></span>
 <span><span class="co">#&gt; $ location         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VIC", "VIC", "VIC", "VIC", "VIC", "VIC", "NSW", "NSW…</span></span>
