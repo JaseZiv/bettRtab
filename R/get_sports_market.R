@@ -1,5 +1,5 @@
 
-#' Get all markets fr selected competition
+#' Get all markets for selected competition
 #'
 #' Returns all betting markets data for a selected TAB competition
 #'

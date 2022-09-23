@@ -10,3 +10,4 @@
 * `parse_dividends()` to extract dividends from the output of `get_past_race_content()` and `get_past_races()`
 * `get_race_meet_meta()` to get metadata from race meets from selected date(s)
 * `get_sports_market()` to get the betting markets for a selected competition
+* `get_live_sports()` to get in-play (live) sports markets (0.0.0.7000)

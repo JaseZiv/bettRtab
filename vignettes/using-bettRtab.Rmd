@@ -60,7 +60,7 @@ httr::set_config(httr::use_proxy(url = Sys.getenv("PROXY_URL"),
 ```
 
 
-### Sports Data
+## Sports Data
 
 To get betting data for any currently available competition market, use the `get_sports_market()` function. 
 
@@ -92,7 +92,25 @@ epl_futures %>%
 ```
 
 
+### Live (In-Play) Sports
+
+To get live and in-play sports markets as they're being played, the `get_live_sports()` function is to be used. This will return a data frame of all sports that have an in-play market. 
+
+The user can then filter the outputted data frame on any of the variables in the data set (`name`, `displayName`, `competitions.id`, `competitions.matches.name`, etc).
+
+```{r live_sports, eval=FALSE}
+live_sports <- get_live_sports()
+dplyr::glimpse(live_sports)
+```
+
+
 ***
+
+
+## Racing Data
+
+This sections will outline the functions available to extract Horse, Harness and Greyhound racing.
+
 
 ### Past Racing Data
 

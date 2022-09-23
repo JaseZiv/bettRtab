@@ -67,3 +67,11 @@ test_that("parse_dividends() works", {
   expect_true(nrow(df) != 0)
 })
 
+
+
+test_that("get_live_sports() works", {
+  df <- get_live_sports()
+  expect_type(df, "list")
+  expect_true(nrow(df) != 0)
+})
+

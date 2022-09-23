@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_sports_market.R
 \name{get_sports_market}
 \alias{get_sports_market}
-\title{Get all markets fr selected competition}
+\title{Get all markets for selected competition}
 \usage{
 get_sports_market(competition_name)
 }
