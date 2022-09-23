@@ -80,7 +80,8 @@ get_live_sports <- function() {
       dplyr::select(-.data$competitions.betOptionPriority, -.data$competitions.matches, -.data$count)
 
     # unnest to get the different tournaments:
-    tourn_tournaments <- tourn %>% select(.data$competitions.id, .data$competitions.tournaments) %>%
+    tourn_tournaments <- tourn %>%
+      dplyr::select(.data$competitions.id, .data$competitions.tournaments) %>%
       tidyr::unnest(.data$competitions.tournaments, names_sep = ".") %>%
       dplyr::select(-dplyr::contains("betOptionPriority"))
 
@@ -111,7 +112,7 @@ get_live_sports <- function() {
 
 
 
-    out <- bind_rows(out, tourn)
+    out <- dplyr::bind_rows(out, tourn)
 
     out <- out %>%
       dplyr::select(.data$id, .data$name, .data$displayName, .data$competitions.id, .data$competitions.name,
