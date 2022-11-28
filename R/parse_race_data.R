@@ -52,7 +52,7 @@
   meta <- .parse_race_meta(race_list_element)
 
   runners <- tryCatch(race_list_element$runners %>% data.frame(), error = function(e) data.frame())
-  runners <- tryCatch(tidyr::unnest(runners, cols = c(.data$fixedOdds, .data$parimutuel), names_sep = "."), error = function(e) data.frame())
+  runners <- tryCatch(tidyr::unnest(runners, cols = c(.data[["fixedOdds"]], .data[["parimutuel"]]), names_sep = "."), error = function(e) data.frame())
 
   df <- dplyr::bind_cols(meta, runners)
 
@@ -104,7 +104,7 @@ parse_runners <- function(race_list) {
 
   meta <- .parse_race_meta(race_list_element)
 
-  pools <- tryCatch(race_list_element$pools %>% tidyr::unnest(.data$legs), error = function(e) data.frame())
+  pools <- tryCatch(race_list_element$pools %>% tidyr::unnest(.data[["legs"]]), error = function(e) data.frame())
 
   pools <- pools %>% dplyr::select(-dplyr::matches("raceType|venueMnemonic|raceNumber", perl=TRUE))
 
@@ -157,7 +157,7 @@ parse_pools <- function(race_list) {
 .parse_dividends_each_race <- function(race_list_element) {
 
   meta <- .parse_race_meta(race_list_element)
-  dividends <- tryCatch(race_list_element$dividends %>% tidyr::unnest(.data$poolDividends), error = function(e) data.frame())
+  dividends <- tryCatch(race_list_element$dividends %>% tidyr::unnest(.data[["poolDividends"]]), error = function(e) data.frame())
 
   dividends <- dplyr::bind_cols(meta, dividends)
   return(dividends)

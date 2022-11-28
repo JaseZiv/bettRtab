@@ -22,8 +22,8 @@ get_sports_market <- function(competition_name) {
   sports <- .file_reader("https://github.com/JaseZiv/bettRtab_data/blob/main/data/sports_markets.rds?raw=true")
 
   link_url <- sports %>%
-    dplyr::filter(.data$competitions.name == competition_name) %>%
-    dplyr::pull(.data$self) %>% unlist()
+    dplyr::filter(.data[["competitions.name"]] == competition_name) %>%
+    dplyr::pull(.data[["self"]]) %>% unlist()
 
 
   res <-  httr::GET(link_url) %>% httr::content()
@@ -36,15 +36,15 @@ get_sports_market <- function(competition_name) {
 
     markets <- aa[[j]]$markets %>% jsonlite::toJSON() %>% jsonlite::fromJSON() %>% data.frame()
     markets <- markets %>%
-      dplyr::rename(marketId=.data$id, marketName=.data$name, marketBettingStatus=.data$bettingStatus, marketAllowPlace=.data$allowPlace)
+      dplyr::rename(marketId=.data[["id"]], marketName=.data[["name"]], marketBettingStatus=.data[["bettingStatus"]], marketAllowPlace=.data[["allowPlace"]])
 
     if(any(grep("sameGame", names(markets)))) {
       markets <- markets %>%
-        dplyr::rename(marketSameGame=.data$sameGame)
+        dplyr::rename(marketSameGame=.data[["sameGame"]])
     }
 
-    df <- tidyr::unnest(markets, cols = .data$propositions) %>% data.frame()
-    df <- df %>% dplyr::select(-.data$differential, -.data$message, -.data$informationMessage)
+    df <- tidyr::unnest(markets, cols = .data[["propositions"]]) %>% data.frame()
+    df <- df %>% dplyr::select(-.data[["differential"]], -.data[["message"]], -.data[["informationMessage"]])
     df <- .unlist_df_cols(df)
 
     markets_df <- dplyr::bind_rows(markets_df, df)

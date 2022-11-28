@@ -50,7 +50,7 @@ get_live_sports <- function() {
 
   sports <- resp$liveMatches$sports
 
-  dat <- sports %>% tidyr::unnest(.data$competitions, names_sep = ".")
+  dat <- sports %>% tidyr::unnest(.data[["competitions"]], names_sep = ".")
 
   # if there are sports that have tournaments, then we need to treat them differently.
   # need to identify these"
@@ -62,13 +62,13 @@ get_live_sports <- function() {
   out <- dat[!idx,]
 
   out <- out %>%
-    dplyr::select(-.data$competitions.betOptionPriority, -.data$competitions.tournaments, -.data$count) %>%
-    tidyr::unnest(.data$competitions.matches, names_sep = ".") %>%
-    dplyr::select(.data$id, .data$name, .data$displayName, .data$competitions.id, .data$competitions.name,
-                  .data$competitions.matches.id, .data$competitions.matches.name, .data$competitions.matches.spectrumUniqueId,
-                  dplyr::contains("Time"), .data$competitions.matches.markets) %>%
-    tidyr::unnest(.data$competitions.matches.markets, names_sep = ".") %>%
-    tidyr::unnest(.data$competitions.matches.markets.propositions, names_sep = ".")
+    dplyr::select(-.data[["competitions.betOptionPriority"]], -.data[["competitions.tournaments"]], -.data[["count"]]) %>%
+    tidyr::unnest(.data[["competitions.matches"]], names_sep = ".") %>%
+    dplyr::select(.data[["id"]], .data[["name"]], .data[["displayName"]], .data[["competitions.id"]], .data[["competitions.name"]],
+                  .data[["competitions.matches.id"]], .data[["competitions.matches.name"]], .data[["competitions.matches.spectrumUniqueId"]],
+                  dplyr::contains("Time"), .data[["competitions.matches.markets"]]) %>%
+    tidyr::unnest(.data[["competitions.matches.markets"]], names_sep = ".") %>%
+    tidyr::unnest(.data[["competitions.matches.markets.propositions"]], names_sep = ".")
 
   # different way for handling tournaments - tennis has WTA as the comp,
   # then different tournaments under WTA, then matches - there is one more level of unnesting
@@ -77,12 +77,12 @@ get_live_sports <- function() {
     tourn <- dat[idx,]
 
     tourn <- tourn %>%
-      dplyr::select(-.data$competitions.betOptionPriority, -.data$competitions.matches, -.data$count)
+      dplyr::select(-.data[["competitions.betOptionPriority"]], -.data[["competitions.matches"]], -.data[["count"]])
 
     # unnest to get the different tournaments:
     tourn_tournaments <- tourn %>%
-      dplyr::select(.data$competitions.id, .data$competitions.tournaments) %>%
-      tidyr::unnest(.data$competitions.tournaments, names_sep = ".") %>%
+      dplyr::select(.data[["competitions.id"]], .data[["competitions.tournaments"]]) %>%
+      tidyr::unnest(.data[["competitions.tournaments"]], names_sep = ".") %>%
       dplyr::select(-dplyr::contains("betOptionPriority"))
 
     # now we need to join the two df created to have a meta df for the sports. This will be important as subsequent data frames
@@ -90,14 +90,14 @@ get_live_sports <- function() {
     tourn <- tourn %>%
       dplyr::left_join(tourn_tournaments, by = c("competitions.id")) %>%
       # then drop the column that's not needed as we've already expanded this in the previous step
-      dplyr::select(-.data$competitions.tournaments)
+      dplyr::select(-.data[["competitions.tournaments"]])
 
 
     # now unnest to get the list of live matches
     tourn_matches <- tourn_tournaments %>%
-      dplyr::select(.data$competitions.tournaments.id, .data$competitions.tournaments.matches) %>%
-      tidyr::unnest(.data$competitions.tournaments.matches, names_sep = ".") %>%
-      dplyr::select(.data$competitions.tournaments.id, dplyr::contains("Time"), .data$competitions.tournaments.matches.markets)
+      dplyr::select(.data[["competitions.tournaments.id"]], .data[["competitions.tournaments.matches"]]) %>%
+      tidyr::unnest(.data[["competitions.tournaments.matches"]], names_sep = ".") %>%
+      dplyr::select(.data[["competitions.tournaments.id"]], dplyr::contains("Time"), .data[["competitions.tournaments.matches.markets"]])
 
     # change all these names so that we remove "tournaments" from them. This will mean we can append to our non-tournament data
     names(tourn_matches) <- gsub(".tournaments", "", names(tourn_matches))
@@ -106,17 +106,17 @@ get_live_sports <- function() {
     tourn <- tourn %>%
       dplyr::left_join(tourn_matches, by = c("competitions.tournaments.id" = "competitions.id")) %>%
       # then drop the column that's not needed as we've already expanded this in the previous step
-      dplyr::select(-.data$competitions.tournaments.matches) %>%
-      tidyr::unnest(.data$competitions.matches.markets, names_sep = ".") %>%
-      tidyr::unnest(.data$competitions.matches.markets.propositions, names_sep = ".")
+      dplyr::select(-.data[["competitions.tournaments.matches"]]) %>%
+      tidyr::unnest(.data[["competitions.matches.markets"]], names_sep = ".") %>%
+      tidyr::unnest(.data[["competitions.matches.markets.propositions"]], names_sep = ".")
 
 
 
     out <- dplyr::bind_rows(out, tourn)
 
     out <- out %>%
-      dplyr::select(.data$id, .data$name, .data$displayName, .data$competitions.id, .data$competitions.name,
-             .data$competitions.tournaments.id, .data$competitions.tournaments.name,
+      dplyr::select(.data[["id"]], .data[["name"]], .data[["displayName"]], .data[["competitions.id"]], .data[["competitions.name"]],
+             .data[["competitions.tournaments.id"]], .data[["competitions.tournaments.name"]],
              dplyr::everything())
 
   }

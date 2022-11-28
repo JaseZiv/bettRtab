@@ -123,14 +123,14 @@ get_past_races <- function(meet_date, venue_mnem, race_type, race_num=NULL) {
 
 
   df <- dat_df %>%
-    dplyr::filter(.data$meetingDate %in% meet_date,
-           .data$venueMnemonic %in% venue_mnem,
-           .data$raceType %in% race_type)
+    dplyr::filter(.data[["meetingDate"]] %in% meet_date,
+           .data[["venueMnemonic"]] %in% venue_mnem,
+           .data[["raceType"]] %in% race_type)
 
   if(is.null(race_num)) {
     df <- dplyr::bind_rows(df$races) %>% data.frame()
   } else {
-    df <- dplyr::bind_rows(df$races) %>% data.frame() %>% dplyr::filter(.data$raceNumber %in% race_num)
+    df <- dplyr::bind_rows(df$races) %>% data.frame() %>% dplyr::filter(.data[["raceNumber"]] %in% race_num)
   }
 
 
