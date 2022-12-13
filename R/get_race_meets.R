@@ -28,7 +28,7 @@
   # need a while loop here as there were still times when the API was failing and returning a list of length zero
   # have arbitrarily set the max number of retries in the while-loop to 20 - might want to parameterise this later
   iter <- 1
-  while(length(history_content) == 0 | is.na(history_content) | any(grepl("NOT_FOUND_ERROR", history_content))) {
+  while(length(history_content) == 0 | is.na(history_content) | any(grepl("NOT_FOUND_ERROR", history_content)) | history_content == "") {
 
     iter <- iter + 1
     stopifnot("The API is not accepting this request. Please try again." = iter <21)
