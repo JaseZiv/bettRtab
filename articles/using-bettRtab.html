@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">bettRtab</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.7000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.8000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,9 +85,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Getting TAB betting data using bettRtab</h1>
-                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
+                        <h4 data-toc-skip class="author">Jason
+Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-09-23</h4>
+            <h4 data-toc-skip class="date">2022-12-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/bettRtab/blob/HEAD/vignettes/using-bettRtab.Rmd" class="external-link"><code>vignettes/using-bettRtab.Rmd</code></a></small>
       <div class="d-none name"><code>using-bettRtab.Rmd</code></div>
@@ -98,13 +99,16 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This vignette will outline the ways in which the functions in <code>bettRtab</code> can be used to extract sports and racing betting data from the <a href="https://www.tab.com.au/" class="external-link">TAB</a>.</p>
+<p>This vignette will outline the ways in which the functions in
+<code>bettRtab</code> can be used to extract sports and racing betting
+data from the <a href="https://www.tab.com.au/" class="external-link">TAB</a>.</p>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the released version of <a href="https://github.com/JaseZiv/bettRtab/" class="external-link"><strong><code>bettRtab</code></strong></a> from <a href="https://github.com/JaseZiv/bettRtab" class="external-link">GitHub</a> with:</p>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/bettRtab/" class="external-link"><strong><code>bettRtab</code></strong></a>
+from <a href="https://github.com/JaseZiv/bettRtab" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/bettRtab"</span><span class="op">)</span></span></code></pre></div>
@@ -116,8 +120,11 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>The functions in this package should work without hitch locally, but running these in an automated way (GitHub Actions, cloud, etc) may lead to requests being blocked.</p>
-<p>To get around this, you will need access to proxies and would need to set configs at the start of your scripts similar to the following:</p>
+<p>The functions in this package should work without hitch locally, but
+running these in an automated way (GitHub Actions, cloud, etc) may lead
+to requests being blocked.</p>
+<p>To get around this, you will need access to proxies and would need to
+set configs at the start of your scripts similar to the following:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/set_config.html" class="external-link">set_config</a></span><span class="op">(</span><span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/use_proxy.html" class="external-link">use_proxy</a></span><span class="op">(</span>url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"PROXY_URL"</span><span class="op">)</span>,</span>
 <span>                                 port <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"PROXY_PORT"</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -127,23 +134,28 @@
 <div class="section level2">
 <h2 id="sports-data">Sports Data<a class="anchor" aria-label="anchor" href="#sports-data"></a>
 </h2>
-<p>To get betting data for any currently available competition market, use the <code><a href="../reference/get_sports_market.html">get_sports_market()</a></code> function.</p>
-<p>To get a valid list of values you can pass to the <code>competition_name</code> parameter, look at the <code>competitions.name</code> column in the file <a href="https://github.com/JaseZiv/bettRtab_data/blob/main/data/sports_markets.csv" class="external-link">here</a>.</p>
-<p>Alternatively, the <code>competition_name</code> needed as an argument to this function can be found under the competitions page selector on the TAB website.</p>
+<p>To get betting data for any currently available competition market,
+use the <code><a href="../reference/get_sports_market.html">get_sports_market()</a></code> function.</p>
+<p>To get a valid list of values you can pass to the
+<code>competition_name</code> parameter, look at the
+<code>competitions.name</code> column in the file <a href="https://github.com/JaseZiv/bettRtab_data/blob/main/data/sports_markets.csv" class="external-link">here</a>.</p>
+<p>Alternatively, the <code>competition_name</code> needed as an
+argument to this function can be found under the competitions page
+selector on the TAB website.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sports_market.html">get_sports_market</a></span><span class="op">(</span>competition_name <span class="op">=</span> <span class="st">"English Premier League Futures"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_futures</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 238</span></span>
+<span><span class="co">#&gt; Rows: 289</span></span>
 <span><span class="co">#&gt; Columns: 33</span></span>
 <span><span class="co">#&gt; $ marketId            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "68519348", "68519348", "68519348", "68519348", "6…</span></span>
 <span><span class="co">#&gt; $ marketName          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "EPL Winner 2022/23", "EPL Winner 2022/23", "EPL W…</span></span>
 <span><span class="co">#&gt; $ shortName           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "EPL Winner 2022/23", "EPL Winner 2022/23", "EPL W…</span></span>
 <span><span class="co">#&gt; $ betOption           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Winner", "Winner", "Winner", "Winner", "Winner", …</span></span>
 <span><span class="co">#&gt; $ betOptionSpectrumId <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "52", "52", "52", "52", "52", "52", "52", "52", "5…</span></span>
-<span><span class="co">#&gt; $ betOptionPriority   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "90", "90", "90", "90", "90", "90", "90", "90", "9…</span></span>
+<span><span class="co">#&gt; $ betOptionPriority   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "220", "220", "220", "220", "220", "220", "220", "…</span></span>
 <span><span class="co">#&gt; $ marketUniqueId      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "68519348", "68519348", "68519348", "68519348", "6…</span></span>
-<span><span class="co">#&gt; $ closeTime           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2022-10-01T11:30:00.000Z", "2022-10-01T11:30:00.0…</span></span>
+<span><span class="co">#&gt; $ closeTime           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2022-12-26T12:30:00.000Z", "2022-12-26T12:30:00.0…</span></span>
 <span><span class="co">#&gt; $ marketBettingStatus <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Open", "Open", "Open", "Open", "Open", "Open", "O…</span></span>
 <span><span class="co">#&gt; $ isFuture            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "T…</span></span>
 <span><span class="co">#&gt; $ onlineBetting       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "T…</span></span>
@@ -160,15 +172,15 @@
 <span><span class="co">#&gt; $ numberOfPlaces      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", …</span></span>
 <span><span class="co">#&gt; $ cashOutEligibility  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Enabled", "Enabled", "Enabled", "Enabled", "Enabl…</span></span>
 <span><span class="co">#&gt; $ allowBundle         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALS…</span></span>
-<span><span class="co">#&gt; $ id                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "278385", "278386", "278390", "278389", "278388", …</span></span>
-<span><span class="co">#&gt; $ name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Liverpool", "Arsenal", "Tottenham", "…</span></span>
-<span><span class="co">#&gt; $ returnWin           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1.32", "8", "11", "15", "34", "34", "201", "251",…</span></span>
+<span><span class="co">#&gt; $ id                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "278385", "278390", "278386", "278391", "278388", …</span></span>
+<span><span class="co">#&gt; $ name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Arsenal", "Liverpool", "Newcastle", "…</span></span>
+<span><span class="co">#&gt; $ returnWin           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1.42", "3.25", "34", "34", "67", "67", "251", "50…</span></span>
 <span><span class="co">#&gt; $ returnPlace         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", …</span></span>
 <span><span class="co">#&gt; $ bettingStatus       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Open", "Open", "Open", "Open", "Open", "Open", "O…</span></span>
 <span><span class="co">#&gt; $ allowPlace          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALS…</span></span>
-<span><span class="co">#&gt; $ number              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "278385", "278386", "278390", "278389", "278388", …</span></span>
+<span><span class="co">#&gt; $ number              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "278385", "278390", "278386", "278391", "278388", …</span></span>
 <span><span class="co">#&gt; $ isOpen              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "T…</span></span>
-<span><span class="co">#&gt; $ sortOrder           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "2", "6", "5", "4", "3", "10", "7", "16", "18…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ sortOrder           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "6", "2", "7", "4", "5", "3", "10", "8", "14"…</span></span></code></pre></div>
 <p>We can then inspect to see which betting markets are available:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -176,45 +188,51 @@
 <span><span class="co">#&gt;                              betOption</span></span>
 <span><span class="co">#&gt; 1                               Winner</span></span>
 <span><span class="co">#&gt; 2                      Top Goal Scorer</span></span>
-<span><span class="co">#&gt; 3                                Top 4</span></span>
-<span><span class="co">#&gt; 4                           Relegation</span></span>
-<span><span class="co">#&gt; 5                                Top 2</span></span>
-<span><span class="co">#&gt; 6                                Top 6</span></span>
-<span><span class="co">#&gt; 7                   To Finish Top Half</span></span>
-<span><span class="co">#&gt; 8                  Team to Finish Last</span></span>
-<span><span class="co">#&gt; 9  Winner without Liverpool &amp; Man City</span></span>
-<span><span class="co">#&gt; 10                Winner without Big 6</span></span></code></pre></div>
-<p>and we can then explore some key markets… say we want to see the odds of relegation in the EPL:</p>
+<span><span class="co">#&gt; 3      Top Goal Scorer Without Haaland</span></span>
+<span><span class="co">#&gt; 4                                Top 4</span></span>
+<span><span class="co">#&gt; 5                           Relegation</span></span>
+<span><span class="co">#&gt; 6                                Top 2</span></span>
+<span><span class="co">#&gt; 7                                Top 6</span></span>
+<span><span class="co">#&gt; 8                   To Finish Top Half</span></span>
+<span><span class="co">#&gt; 9                  Team to Finish Last</span></span>
+<span><span class="co">#&gt; 10              Season Points Handicap</span></span>
+<span><span class="co">#&gt; 11 Winner without Liverpool &amp; Man City</span></span>
+<span><span class="co">#&gt; 12                Winner without Big 6</span></span></code></pre></div>
+<p>and we can then explore some key markets… say we want to see the odds
+of relegation in the EPL:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_futures</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">betOption</span> <span class="op">==</span> <span class="st">"Relegation"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">marketName</span>, <span class="va">id</span>, <span class="va">name</span>, <span class="va">returnWin</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                marketName     id              name returnWin</span></span>
-<span><span class="co">#&gt; 1  EPL Relegation 2022/23 228287       Bournemouth       1.5</span></span>
-<span><span class="co">#&gt; 2  EPL Relegation 2022/23 228288 Nottingham Forest      1.55</span></span>
-<span><span class="co">#&gt; 3  EPL Relegation 2022/23 228279         Leicester       2.8</span></span>
-<span><span class="co">#&gt; 4  EPL Relegation 2022/23 228285       Southampton      3.25</span></span>
-<span><span class="co">#&gt; 5  EPL Relegation 2022/23 228278           Everton      3.75</span></span>
-<span><span class="co">#&gt; 6  EPL Relegation 2022/23 228277     Wolverhampton         4</span></span>
-<span><span class="co">#&gt; 7  EPL Relegation 2022/23 228286             Leeds       5.5</span></span>
-<span><span class="co">#&gt; 8  EPL Relegation 2022/23 228282         Brentford       5.5</span></span>
-<span><span class="co">#&gt; 9  EPL Relegation 2022/23 228284            Fulham         6</span></span>
-<span><span class="co">#&gt; 10 EPL Relegation 2022/23 228283       Aston Villa         8</span></span>
-<span><span class="co">#&gt; 11 EPL Relegation 2022/23 228280    Crystal Palace         9</span></span>
-<span><span class="co">#&gt; 12 EPL Relegation 2022/23 228275          West Ham        13</span></span>
-<span><span class="co">#&gt; 13 EPL Relegation 2022/23 228281          Brighton        34</span></span>
-<span><span class="co">#&gt; 14 EPL Relegation 2022/23 228276         Newcastle        41</span></span>
-<span><span class="co">#&gt; 15 EPL Relegation 2022/23 228272           Man Utd       151</span></span>
-<span><span class="co">#&gt; 16 EPL Relegation 2022/23 228271           Chelsea       501</span></span>
-<span><span class="co">#&gt; 17 EPL Relegation 2022/23 228274           Arsenal      1001</span></span>
-<span><span class="co">#&gt; 18 EPL Relegation 2022/23 228270         Liverpool      1001</span></span>
-<span><span class="co">#&gt; 19 EPL Relegation 2022/23 228273         Tottenham      1501</span></span>
-<span><span class="co">#&gt; 20 EPL Relegation 2022/23 228269          Man City      3001</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  EPL Relegation 2022/23 228288 Nottingham Forest      1.55</span></span>
+<span><span class="co">#&gt; 2  EPL Relegation 2022/23 228287       Bournemouth      1.65</span></span>
+<span><span class="co">#&gt; 3  EPL Relegation 2022/23 228277     Wolverhampton       1.8</span></span>
+<span><span class="co">#&gt; 4  EPL Relegation 2022/23 228278           Everton       2.6</span></span>
+<span><span class="co">#&gt; 5  EPL Relegation 2022/23 228285       Southampton       2.6</span></span>
+<span><span class="co">#&gt; 6  EPL Relegation 2022/23 228286             Leeds         5</span></span>
+<span><span class="co">#&gt; 7  EPL Relegation 2022/23 228284            Fulham       6.5</span></span>
+<span><span class="co">#&gt; 8  EPL Relegation 2022/23 228279         Leicester         9</span></span>
+<span><span class="co">#&gt; 9  EPL Relegation 2022/23 228282         Brentford         9</span></span>
+<span><span class="co">#&gt; 10 EPL Relegation 2022/23 228275          West Ham        11</span></span>
+<span><span class="co">#&gt; 11 EPL Relegation 2022/23 228283       Aston Villa        15</span></span>
+<span><span class="co">#&gt; 12 EPL Relegation 2022/23 228280    Crystal Palace        21</span></span>
+<span><span class="co">#&gt; 13 EPL Relegation 2022/23 228281          Brighton        67</span></span>
+<span><span class="co">#&gt; 14 EPL Relegation 2022/23 228271           Chelsea       351</span></span>
+<span><span class="co">#&gt; 15 EPL Relegation 2022/23 228270         Liverpool       401</span></span>
+<span><span class="co">#&gt; 16 EPL Relegation 2022/23 228272           Man Utd       401</span></span>
+<span><span class="co">#&gt; 17 EPL Relegation 2022/23 228273         Tottenham       751</span></span>
+<span><span class="co">#&gt; 18 EPL Relegation 2022/23 228276         Newcastle       751</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="live-in-play-sports">Live (In-Play) Sports<a class="anchor" aria-label="anchor" href="#live-in-play-sports"></a>
 </h3>
-<p>To get live and in-play sports markets as they’re being played, the <code><a href="../reference/get_live_sports.html">get_live_sports()</a></code> function is to be used. This will return a data frame of all sports that have an in-play market.</p>
-<p>The user can then filter the outputted data frame on any of the variables in the data set (<code>name</code>, <code>displayName</code>, <code>competitions.id</code>, <code>competitions.matches.name</code>, etc).</p>
+<p>To get live and in-play sports markets as they’re being played, the
+<code><a href="../reference/get_live_sports.html">get_live_sports()</a></code> function is to be used. This will return
+a data frame of all sports that have an in-play market.</p>
+<p>The user can then filter the outputted data frame on any of the
+variables in the data set (<code>name</code>, <code>displayName</code>,
+<code>competitions.id</code>, <code>competitions.matches.name</code>,
+etc).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">live_sports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_live_sports.html">get_live_sports</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">live_sports</span><span class="op">)</span></span></code></pre></div>
@@ -224,19 +242,25 @@
 <div class="section level2">
 <h2 id="racing-data">Racing Data<a class="anchor" aria-label="anchor" href="#racing-data"></a>
 </h2>
-<p>This sections will outline the functions available to extract Horse, Harness and Greyhound racing.</p>
+<p>This sections will outline the functions available to extract Horse,
+Harness and Greyhound racing.</p>
 <div class="section level3">
 <h3 id="past-racing-data">Past Racing Data<a class="anchor" aria-label="anchor" href="#past-racing-data"></a>
 </h3>
-<p>The following section will outline how to use functions do get racing data (horses, harness racing and greyhounds) for past races run.</p>
+<p>The following section will outline how to use functions do get racing
+data (horses, harness racing and greyhounds) for past races run.</p>
 <blockquote>
-<p>This section does not include functions to get current day or future racing data.</p>
+<p>This section does not include functions to get current day or future
+racing data.</p>
 </blockquote>
 <div class="section level4">
 <h4 id="race-meet-meta-data">Race Meet Meta Data<a class="anchor" aria-label="anchor" href="#race-meet-meta-data"></a>
 </h4>
-<p>To get meta data for race meets for a selected date(s), use the <code><a href="../reference/get_race_meet_meta.html">get_race_meet_meta()</a></code> function.</p>
-<p>The output of this function will return where and when the meet(s) were, the weather and track condition, and high level data about each of the races at the meets.</p>
+<p>To get meta data for race meets for a selected date(s), use the
+<code><a href="../reference/get_race_meet_meta.html">get_race_meet_meta()</a></code> function.</p>
+<p>The output of this function will return where and when the meet(s)
+were, the weather and track condition, and high level data about each of
+the races at the meets.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2022-05-01"</span><span class="op">)</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2022-05-03"</span><span class="op">)</span>, by<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">race_meets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_race_meet_meta.html">get_race_meet_meta</a></span><span class="op">(</span>race_dates<span class="op">=</span><span class="va">dates</span><span class="op">)</span></span>
@@ -256,11 +280,15 @@
 <span><span class="co">#&gt; $ races            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[8 x 10]&gt;], [&lt;data.frame[7 x 10]&gt;], [&lt;…</span></span>
 <span><span class="co">#&gt; $ sellCode         <span style="color: #949494; font-style: italic;">&lt;df[,2]&gt;</span> &lt;data.frame[26 x 2]&gt;</span></span></code></pre></div>
 <p><strong>Loading Data</strong></p>
-<p>Rather than scraping this information, you can instead use the <code><a href="../reference/load_race_meet_meta.html">load_race_meet_meta()</a></code> function. This will allow you to get a whole year’s worth of race meet meta data extremely quickly. This data updates daily, so should only very rarely not have the previous day’s race meet data:</p>
+<p>Rather than scraping this information, you can instead use the
+<code><a href="../reference/load_race_meet_meta.html">load_race_meet_meta()</a></code> function. This will allow you to get
+a whole year’s worth of race meet meta data extremely quickly. This data
+updates daily, so should only very rarely not have the previous day’s
+race meet data:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loaded_race_meets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_race_meet_meta.html">load_race_meet_meta</a></span><span class="op">(</span>cal_year<span class="op">=</span><span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">loaded_race_meets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 12,145</span></span>
+<span><span class="co">#&gt; Rows: 15,990</span></span>
 <span><span class="co">#&gt; Columns: 11</span></span>
 <span><span class="co">#&gt; $ meetingName      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FLEMINGTON", "ECHUCA", "THE MEADOWS", "MORNINGTON", …</span></span>
 <span><span class="co">#&gt; $ location         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VIC", "VIC", "VIC", "VIC", "VIC", "VIC", "NSW", "NSW…</span></span>
@@ -278,15 +306,23 @@
 <div class="section level3">
 <h3 id="each-race-data">Each Race Data<a class="anchor" aria-label="anchor" href="#each-race-data"></a>
 </h3>
-<p>To get detailed data on runners, markets, pools and dividends, the following set of functions will be used.</p>
+<p>To get detailed data on runners, markets, pools and dividends, the
+following set of functions will be used.</p>
 <p><strong>Past Race data output</strong></p>
-<p>The <code><a href="../reference/get_past_races.html">get_past_races()</a></code> function will allow you to pass in values for four parameters to have a list of races outputted. The result of this function should be stored for use with the parsing functions to be explained shortly.</p>
-<p>The <code>race_num</code> value can be left off the function call to default to returning all races on a card’s meet.</p>
-<p>The <code>race_type</code> value needs to be either ‘R’, ‘H’ or ‘G’.</p>
-<p>The rest of the parameters can have multiple arguments passed to them.</p>
+<p>The <code><a href="../reference/get_past_races.html">get_past_races()</a></code> function will allow you to pass in
+values for four parameters to have a list of races outputted. The result
+of this function should be stored for use with the parsing functions to
+be explained shortly.</p>
+<p>The <code>race_num</code> value can be left off the function call to
+default to returning all races on a card’s meet.</p>
+<p>The <code>race_type</code> value needs to be either ‘R’, ‘H’ or
+‘G’.</p>
+<p>The rest of the parameters can have multiple arguments passed to
+them.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">race_list_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_past_races.html">get_past_races</a></span><span class="op">(</span>meet_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'2022-09-03'</span>, <span class="st">'2022-09-10'</span><span class="op">)</span>, venue_mnem <span class="op">=</span> <span class="st">'M'</span>, race_type <span class="op">=</span> <span class="st">'R'</span>, race_num <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Alternatively, you can get the same data as above using the TAB race API URL. To get this URL, follow the below steps:</p>
+<p>Alternatively, you can get the same data as above using the TAB race
+API URL. To get this URL, follow the below steps:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># first load in meet data</span></span>
 <span><span class="va">meets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_race_meet_meta.html">load_race_meet_meta</a></span><span class="op">(</span>cal_year <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
@@ -307,9 +343,13 @@
 <div class="section level3">
 <h3 id="parsing-race-data">Parsing Race Data<a class="anchor" aria-label="anchor" href="#parsing-race-data"></a>
 </h3>
-<p>So to easily get the data you want, parsing functions have been created to operate on the stored outputs of either the <code><a href="../reference/get_past_races.html">get_past_races()</a></code> or <code><a href="../reference/get_past_race_content.html">get_past_race_content()</a></code>.</p>
+<p>So to easily get the data you want, parsing functions have been
+created to operate on the stored outputs of either the
+<code><a href="../reference/get_past_races.html">get_past_races()</a></code> or
+<code><a href="../reference/get_past_race_content.html">get_past_race_content()</a></code>.</p>
 <p><strong>Parse runners and betting market</strong></p>
-<p>To get a race’s runners and betting odds, use the <code><a href="../reference/parse_runners.html">parse_runners()</a></code> function:</p>
+<p>To get a race’s runners and betting odds, use the
+<code><a href="../reference/parse_runners.html">parse_runners()</a></code> function:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">runners</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_runners.html">parse_runners</a></span><span class="op">(</span>race_list <span class="op">=</span> <span class="va">race_list_output</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">runners</span><span class="op">)</span></span>
@@ -350,7 +390,8 @@
 <span><span class="co">#&gt; $ parimutuel.returnWin        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0, 33.2, 10.1, 21.4, 2.5, 3.3, 21.2, 24.…</span></span>
 <span><span class="co">#&gt; $ parimutuel.returnPlace      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0, 6.3, 2.2, 4.7, 1.3, 1.5, 4.4, 5.2, 2.…</span></span></code></pre></div>
 <p><strong>Parse pools</strong></p>
-<p>To get a race’s betting pools, use the <code><a href="../reference/parse_pools.html">parse_pools()</a></code> function:</p>
+<p>To get a race’s betting pools, use the <code><a href="../reference/parse_pools.html">parse_pools()</a></code>
+function:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pools</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_pools.html">parse_pools</a></span><span class="op">(</span>race_list <span class="op">=</span> <span class="va">race_list_output</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pools</span><span class="op">)</span></span>
@@ -382,7 +423,8 @@
 <span><span class="co">#&gt; $ legNumber           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 1, 2, 1, 2,…</span></span>
 <span><span class="co">#&gt; $ startTime           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2022-09-03T06:50:00+00:00", "2022-09-03T06:50:00+…</span></span></code></pre></div>
 <p><strong>Parse dividends</strong></p>
-<p>To get a race’s dividends, use the <code><a href="../reference/parse_dividends.html">parse_dividends()</a></code> function:</p>
+<p>To get a race’s dividends, use the <code><a href="../reference/parse_dividends.html">parse_dividends()</a></code>
+function:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dividends</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_dividends.html">parse_dividends</a></span><span class="op">(</span>race_list <span class="op">=</span> <span class="va">race_list_output</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">dividends</span><span class="op">)</span></span>
