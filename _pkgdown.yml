@@ -7,6 +7,14 @@ authors:
 template:
   bootstrap: 5
   bootswatch: simplex
-  params:
-    ganalytics: G-MG3SKS2272
+  includes:
+    in_header: |
+       <!-- Google tag (gtag.js) -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-MG3SKS2272"></script>
+       <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-MG3SKS2272');
+       </script>
 
