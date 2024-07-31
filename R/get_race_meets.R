@@ -15,11 +15,7 @@
 
   each_url <- paste0('https://api.beta.tab.com.au/v1/historical-results-service/VIC/racing/', each_date)
 
-  history <- httr::RETRY("GET",
-                         url = each_url,
-                         times = 5, # the function has other params to tweak its behavior
-                         pause_min = 5,
-                         pause_base = 2)
+  history <- .RETRY_GET_tab(url = each_url)
 
   history_content <- suppressMessages(tryCatch(httr::content(history, "text"), error = function(e) NA_character_))
 
@@ -35,11 +31,7 @@
 
     Sys.sleep(2)
 
-    history <- httr::RETRY("GET",
-                           url = each_url,
-                           times = 5, # the function has other params to tweak its behavior
-                           pause_min = 5,
-                           pause_base = 2)
+    history <- .RETRY_GET_tab(url = each_url)
 
 
     history_content <- suppressMessages(tryCatch(httr::content(history, "text"), error = function(e) NA_character_))

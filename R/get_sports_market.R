@@ -26,7 +26,8 @@ get_sports_market <- function(competition_name) {
     dplyr::pull(.data[["self"]]) %>% unlist()
 
 
-  res <-  httr::GET(link_url) %>% httr::content()
+  res <-  .RETRY_GET_tab(url = link_url) %>% httr::content()
+
 
   aa <- res$matches
 

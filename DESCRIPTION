@@ -1,7 +1,7 @@
 Type: Package
 Package: bettRtab
 Title: API wrapper to interact with the betting company TAB
-Version: 0.0.0.8000
+Version: 0.0.1
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph"))
   )
@@ -29,5 +29,5 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3

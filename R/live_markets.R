@@ -18,11 +18,8 @@
 #' })
 #' }
 get_live_sports <- function() {
-  res <- httr::RETRY("GET",
-                     url = "https://api.beta.tab.com.au/v1/recommendation-service/live-events?jurisdiction=VIC",
-                     times = 5, # the function has other params to tweak its behavior
-                     pause_min = 5,
-                     pause_base = 2)
+
+  res <- .RETRY_GET_tab(url = "https://api.beta.tab.com.au/v1/recommendation-service/live-events?jurisdiction=VIC")
 
   resp <- suppressMessages(tryCatch(httr::content(res, "text"), error = function(e) NA_character_))
 
@@ -36,11 +33,7 @@ get_live_sports <- function() {
     stopifnot("The API is not accepting this request. Please try again." = iter <21)
 
     Sys.sleep(1)
-    res <- httr::RETRY("GET",
-                        url = "https://api.beta.tab.com.au/v1/recommendation-service/live-events?jurisdiction=VIC",
-                        times = 5, # the function has other params to tweak its behavior
-                        pause_min = 5,
-                        pause_base = 2) %>%
+    res <- .RETRY_GET_tab(url = "https://api.beta.tab.com.au/v1/recommendation-service/live-events?jurisdiction=VIC") %>%
       httr::content(as = "text", encoding = "UTF-8")
 
     resp <- suppressMessages(tryCatch(httr::content(res, "text"), error = function(e) NA_character_))

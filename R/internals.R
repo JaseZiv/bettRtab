@@ -52,3 +52,29 @@
   tryCatch(readRDS(url(file_url)), error = function(e) data.frame()) %>%
     suppressWarnings()
 }
+
+
+#' GET with specified user agent
+#'
+#' GET a URL, but with a pre-specified user agent
+#'
+#' @param url Uthe url of the page to retrieve
+#'
+#' @noRd
+#'
+.RETRY_GET_tab <- function(url) {
+
+  headers = c(
+    `User-Agent` = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  )
+
+  res <-  httr::RETRY("GET",
+                      config = httr::add_headers(.headers=headers),
+                      url = url,
+                      times = 5, # the function has other params to tweak its behavior
+                      pause_min = 5,
+                      pause_base = 2)
+}
+
+
+

@@ -13,11 +13,7 @@
 #'
 .get_each_past <- function(url) {
   Sys.sleep(1)
-  resp <- httr::RETRY("GET",
-                      url = url,
-                      times = 5, # the function has other params to tweak its behavior
-                      pause_min = 5,
-                      pause_base = 2) %>%
+  resp <- .RETRY_GET_tab(url = url) %>%
     httr::content(as = "text", encoding = "UTF-8")
 
   # need a while loop here as there were still times when the API was failing and returning a list of length zero
@@ -30,11 +26,7 @@
     stopifnot("The API is not accepting this request. Please try again." = iter <21)
 
     Sys.sleep(1)
-    resp <- httr::RETRY("GET",
-                        url = url,
-                        times = 5, # the function has other params to tweak its behavior
-                        pause_min = 5,
-                        pause_base = 2) %>%
+    resp <- .RETRY_GET_tab(url = url) %>%
       httr::content(as = "text", encoding = "UTF-8")
   }
 
