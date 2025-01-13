@@ -17,4 +17,5 @@
 
 * `get_race_meet_meta()` not retrying when content returned is empty ("") (0.0.0.8000)
 * Manually set a user agent as it appears to be a new requirement of the TAB (0.0.1)
+* Update Chrome version in user agent to `Chrome/129.0.0.0` (0.0.2)
 
